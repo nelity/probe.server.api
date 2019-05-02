@@ -20,10 +20,10 @@ require('events').EventEmitter.defaultMaxListeners = Infinity;
 var WebSocketServer = require("ws").Server;
 var sessionParser = session({
     secret: '}Z$U,[G,x,@sBgDrZ5"E)j[/',
-    cookie: { maxAge: 3 * 60 * 60 * 1000, httpOnly: true, secure: true, domain: 'narkasa.com', },
+    cookie: { maxAge: 3 * 60 * 60 * 1000, httpOnly: true, secure: true, domain: 'nelity.com', },
     resave: false,
     saveUninitialized: false,
-    store: new redisStore({ host: 'localhost', port: 6379, client: client, ttl: 260 })
+    store: new redisStore({ host: conf.redis.host, port: conf.redis.port, client: client, ttl: conf.redis.ttl })
 });
 app.use(helmet());
 app.use(helmet.hsts({
