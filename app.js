@@ -5,6 +5,7 @@ var cors = require('cors');
 var bodyParser = require("body-parser");
 var session = require("express-session");
 var redisStore = require('connect-redis')(session);
+var fs = require("fs");
 var client = redis.createClient();
 var morgan = require("morgan");
 var http = require('http');
