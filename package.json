@@ -4,7 +4,8 @@
   "description": "Nelity Probe Server Application",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node --max_old_space_size=4096 app.js",
+    "local": "set NODE_ENV=development && node --max_old_space_size=4096 app.js"
   },
   "repository": {
     "type": "git",
