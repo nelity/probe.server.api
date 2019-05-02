@@ -12,6 +12,10 @@ var http = require('http');
 //var https = require('https'); TODO
 var Config = require('./_helpers/config'), conf = new Config();
 const helmet = require('helmet');
+
+var middlewares = require('./middlewares');
+
+
 var whitelist = ['http://localhost:3001', 'http://localhost:4001', 'https://www.nelity.com', 'https://nelity.com', 'http://www.nelity.com', 'http://nelity.com']
 
 app.use(cors({ origin: whitelist, credentials: true }));
@@ -43,7 +47,7 @@ morgan.token("res", function getId(res) {
 var accessLogStream = fs.createWriteStream(__dirname + "/logs/access.log", { flags: "a" });
 app.use(morgan("combined", { stream: accessLogStream }));
 
-app.use(require("./_controllers"));
+//app.use(require("./_controllers"));
 app.use(function (req, res) {
     res.status(404).send("API is running...");
 });
@@ -55,4 +59,4 @@ httpServer.listen(conf.http.port);
 var wss = new WebSocketServer({
   server: httpServer
 });
-require('./tests/redis.test').redisTest();
+middlewares.websocket.WSSOpen(wss);
