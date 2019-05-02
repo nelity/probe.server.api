@@ -15,7 +15,6 @@ var whitelist = ['http://localhost:3001', 'http://localhost:4001', 'https://www.
 
 app.use(cors({ origin: whitelist, credentials: true }));
 app.options(whitelist, cors({ origin: whitelist, credentials: true }));
-require('./helpers/tools').LogDizinKontrolleri();
 require('events').EventEmitter.defaultMaxListeners = Infinity;
 var WebSocketServer = require("ws").Server;
 var sessionParser = session({
@@ -55,3 +54,4 @@ httpServer.listen(conf.http.port);
 var wss = new WebSocketServer({
   server: httpServer
 });
+require('./tests/redis.test').redisTest();
